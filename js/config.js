@@ -128,7 +128,7 @@ const WEDDING_CONFIG = {
   // ----------------------------------------------------------
   // FOOTER
   // ----------------------------------------------------------
-  footerText: "Made with ❤️ for Catherine & Chris - with the help of Github Copilot!",
+  footerText: "Made with ❤️ and Github Copilot!",
 
 };
 
