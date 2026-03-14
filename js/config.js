@@ -34,7 +34,7 @@ const WEDDING_CONFIG = {
   // ----------------------------------------------------------
   // VENUE
   // ----------------------------------------------------------
-  venueName: "Stadshuset, Uppsala,
+  venueName: "Stadshuset, Uppsala",
   venueAddress: "Stadshuset, Stadshusgatan 2, Uppsala",
   // Google Maps link — replace with your own venue URL
   venueMapUrl: "https://maps.app.goo.gl/LGaQ7aBn4aeLNu9s7",
