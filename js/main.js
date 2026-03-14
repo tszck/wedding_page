@@ -75,22 +75,22 @@ function populatePage() {
   }
 
   // Accommodation
-  setText("accommodation-title", c.accommodation.title);
-  setText("accommodation-text", c.accommodation.text);
-  const accommodationLink = document.getElementById("accommodation-link");
-  if (accommodationLink) {
-    accommodationLink.href = c.accommodation.link;
-    accommodationLink.textContent = c.accommodation.linkText;
-  }
+  // setText("accommodation-title", c.accommodation.title);
+  // setText("accommodation-text", c.accommodation.text);
+  // const accommodationLink = document.getElementById("accommodation-link");
+  // if (accommodationLink) {
+  //   accommodationLink.href = c.accommodation.link;
+  //   accommodationLink.textContent = c.accommodation.linkText;
+  // }
 
   // Travel
-  setText("travel-title", c.travel.title);
-  setText("travel-text", c.travel.text);
-  const travelLink = document.getElementById("travel-link");
-  if (travelLink) {
-    travelLink.href = c.travel.link;
-    travelLink.textContent = c.travel.linkText;
-  }
+  // setText("travel-title", c.travel.title);
+  // setText("travel-text", c.travel.text);
+  // const travelLink = document.getElementById("travel-link");
+  // if (travelLink) {
+  //   travelLink.href = c.travel.link;
+  //   travelLink.textContent = c.travel.linkText;
+  // }
 
   // FAQ accordion
   const faqContainer = document.getElementById("faq-list");
@@ -287,87 +287,87 @@ function showFormError(msg) {
 /* ------------------------------------------------------------------ */
 /*  QR CODE GENERATION                                                 */
 /* ------------------------------------------------------------------ */
-function initQrCode() {
-  const qrContainer = document.getElementById("qr-code");
-  if (!qrContainer) return;
+// function initQrCode() {
+//   const qrContainer = document.getElementById("qr-code");
+//   if (!qrContainer) return;
 
-  const url = WEDDING_CONFIG.shareUrl || window.location.href;
+//   const url = WEDDING_CONFIG.shareUrl || window.location.href;
 
-  // Use the qrcode.js library loaded via CDN in index.html
-  if (typeof QRCode !== "undefined") {
-    new QRCode(qrContainer, {
-      text: url,
-      width: 180,
-      height: 180,
-      colorDark: "#4a3728",
-      colorLight: "#faf8f4",
-      correctLevel: QRCode.CorrectLevel.M,
-    });
-  } else {
-    // Fallback: display the URL as text
-    qrContainer.textContent = url;
-  }
-}
+//   // Use the qrcode.js library loaded via CDN in index.html
+//   if (typeof QRCode !== "undefined") {
+//     new QRCode(qrContainer, {
+//       text: url,
+//       width: 180,
+//       height: 180,
+//       colorDark: "#4a3728",
+//       colorLight: "#faf8f4",
+//       correctLevel: QRCode.CorrectLevel.M,
+//     });
+//   } else {
+//     // Fallback: display the URL as text
+//     qrContainer.textContent = url;
+//   }
+// }
 
 /* ------------------------------------------------------------------ */
 /*  SHARE FUNCTIONALITY                                                */
 /* ------------------------------------------------------------------ */
-function initShare() {
-  const shareBtn = document.getElementById("share-btn");
-  const shareLinkInput = document.getElementById("share-link");
-  const copyBtn = document.getElementById("copy-link-btn");
+// function initShare() {
+//   const shareBtn = document.getElementById("share-btn");
+//   const shareLinkInput = document.getElementById("share-link");
+//   const copyBtn = document.getElementById("copy-link-btn");
 
-  const url = WEDDING_CONFIG.shareUrl || window.location.href;
+//   const url = WEDDING_CONFIG.shareUrl || window.location.href;
 
-  if (shareLinkInput) {
-    shareLinkInput.value = url;
-    shareLinkInput.addEventListener("focus", function () {
-      this.select();
-    });
-  }
+//   if (shareLinkInput) {
+//     shareLinkInput.value = url;
+//     shareLinkInput.addEventListener("focus", function () {
+//       this.select();
+//     });
+//   }
 
-  // Native share (mobile)
-  if (shareBtn) {
-    if (navigator.share) {
-      shareBtn.removeAttribute("hidden");
-      shareBtn.addEventListener("click", function () {
-        navigator.share({
-          title: `${WEDDING_CONFIG.partner1} & ${WEDDING_CONFIG.partner2} — Wedding Invitation`,
-          text: WEDDING_CONFIG.heroTagline,
-          url: url,
-        }).catch(() => {}); // user cancelled — silently ignore
-      });
-    } else {
-      shareBtn.setAttribute("hidden", "");
-    }
-  }
+//   // Native share (mobile)
+//   if (shareBtn) {
+//     if (navigator.share) {
+//       shareBtn.removeAttribute("hidden");
+//       shareBtn.addEventListener("click", function () {
+//         navigator.share({
+//           title: `${WEDDING_CONFIG.partner1} & ${WEDDING_CONFIG.partner2} — Wedding Invitation`,
+//           text: WEDDING_CONFIG.heroTagline,
+//           url: url,
+//         }).catch(() => {}); // user cancelled — silently ignore
+//       });
+//     } else {
+//       shareBtn.setAttribute("hidden", "");
+//     }
+//   }
 
-  // Copy-link button
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => showCopyConfirmation());
-      } else {
-        // Fallback for older browsers
-        shareLinkInput.select();
-        document.execCommand("copy");
-        showCopyConfirmation();
-      }
-    });
-  }
-}
+//   // Copy-link button
+//   if (copyBtn) {
+//     copyBtn.addEventListener("click", function () {
+//       if (navigator.clipboard) {
+//         navigator.clipboard.writeText(url).then(() => showCopyConfirmation());
+//       } else {
+//         // Fallback for older browsers
+//         shareLinkInput.select();
+//         document.execCommand("copy");
+//         showCopyConfirmation();
+//       }
+//     });
+//   }
+// }
 
-function showCopyConfirmation() {
-  const btn = document.getElementById("copy-link-btn");
-  if (!btn) return;
-  const original = btn.textContent;
-  btn.textContent = "Copied! ✓";
-  btn.classList.add("btn--success");
-  setTimeout(function () {
-    btn.textContent = original;
-    btn.classList.remove("btn--success");
-  }, 2000);
-}
+// function showCopyConfirmation() {
+//   const btn = document.getElementById("copy-link-btn");
+//   if (!btn) return;
+//   const original = btn.textContent;
+//   btn.textContent = "Copied! ✓";
+//   btn.classList.add("btn--success");
+//   setTimeout(function () {
+//     btn.textContent = original;
+//     btn.classList.remove("btn--success");
+//   }, 2000);
+// }
 
 /* ------------------------------------------------------------------ */
 /*  FAQ ACCORDION                                                      */
