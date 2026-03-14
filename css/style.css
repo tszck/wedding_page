@@ -1,0 +1,875 @@
+/* ==========================================================================
+   WEDDING PAGE — STYLESHEET
+   Mobile-first, elegant, easy to customise.
+
+   SECTIONS:
+   1.  CSS Custom Properties (colours, fonts, spacing — edit these first)
+   2.  Reset & Base
+   3.  Typography
+   4.  Layout Utilities
+   5.  Navigation
+   6.  Hero
+   7.  Countdown
+   8.  Wedding Details
+   9.  Schedule
+   10. Additional Information (Accommodation, Travel, FAQ)
+   11. RSVP Form
+   12. Confirmation Message
+   13. Share Section
+   14. Footer
+   15. Animations
+   16. Responsive overrides (tablet & desktop)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES
+   Edit colours, fonts, and spacing here to restyle the entire page.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colour palette */
+  --colour-primary:    #b08d6a;   /* warm gold-tan — buttons, accents */
+  --colour-secondary:  #4a3728;   /* deep brown — headings */
+  --colour-bg:         #faf8f4;   /* warm off-white — page background */
+  --colour-bg-alt:     #f3ede4;   /* slightly darker for alternating sections */
+  --colour-text:       #3d3127;   /* body text */
+  --colour-text-light: #7a6755;   /* muted text, labels */
+  --colour-border:     #e0d5c8;   /* subtle borders */
+  --colour-white:      #ffffff;
+  --colour-success:    #5a8a5e;   /* confirmation / success green */
+  --colour-error:      #b85c4a;   /* error / validation red */
+
+  /* Typography */
+  --font-serif:  'Cormorant Garamond', 'Georgia', serif;
+  --font-sans:   'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing scale (multiples of 8px) */
+  --space-1:  0.5rem;   /*  8px */
+  --space-2:  1rem;     /* 16px */
+  --space-3:  1.5rem;   /* 24px */
+  --space-4:  2rem;     /* 32px */
+  --space-5:  3rem;     /* 48px */
+  --space-6:  4rem;     /* 64px */
+  --space-7:  6rem;     /* 96px */
+
+  /* Layout */
+  --max-width:        720px;
+  --section-padding:  var(--space-6) var(--space-3);
+
+  /* Border radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(74, 55, 40, 0.08);
+  --shadow-md: 0 4px 16px rgba(74, 55, 40, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--colour-text);
+  background-color: var(--colour-bg);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--colour-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--colour-secondary);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--colour-secondary);
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 8vw, 5rem); }
+h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
+
+p { margin-bottom: var(--space-2); }
+p:last-child { margin-bottom: 0; }
+
+/* Decorative divider (a thin line with an ornament) */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--colour-primary);
+  font-size: 1.2rem;
+  margin: var(--space-4) 0;
+  opacity: 0.6;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Section heading */
+.section-heading {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+.section-heading h2 {
+  margin-bottom: var(--space-1);
+}
+.section-heading p {
+  color: var(--colour-text-light);
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT UTILITIES
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+section {
+  padding: var(--space-6) 0;
+}
+
+section:nth-child(even) {
+  background-color: var(--colour-bg-alt);
+}
+
+/* Card */
+.card {
+  background: var(--colour-white);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 248, 244, 0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--colour-border);
+  padding: var(--space-1) 0;
+}
+
+.site-nav .container {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--colour-text-light);
+  padding: var(--space-1) 0;
+  transition: color 0.2s;
+}
+
+.site-nav a:hover {
+  color: var(--colour-primary);
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-7) var(--space-3);
+  background-color: var(--colour-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background blobs */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  background: var(--colour-primary);
+  pointer-events: none;
+}
+.hero::before {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  left: -150px;
+}
+.hero::after {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -100px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--colour-primary);
+  margin-bottom: var(--space-3);
+}
+
+.hero-names {
+  font-family: var(--font-serif);
+  color: var(--colour-secondary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.hero-ampersand {
+  display: block;
+  font-size: 0.4em;
+  color: var(--colour-primary);
+  margin: 0.2em 0;
+  opacity: 0.7;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  color: var(--colour-text-light);
+  max-width: 480px;
+  margin-bottom: var(--space-5);
+}
+
+/* CTA button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  padding: 0.85em 2em;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn--primary {
+  background: var(--colour-primary);
+  color: var(--colour-white);
+  box-shadow: 0 2px 8px rgba(176, 141, 106, 0.4);
+}
+
+.btn--primary:hover {
+  background: var(--colour-secondary);
+  color: var(--colour-white);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 55, 40, 0.3);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--colour-primary);
+  border: 2px solid var(--colour-primary);
+}
+
+.btn--outline:hover {
+  background: var(--colour-primary);
+  color: var(--colour-white);
+  transform: translateY(-1px);
+}
+
+.btn--success {
+  background: var(--colour-success) !important;
+  color: var(--colour-white) !important;
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   7. COUNTDOWN
+   -------------------------------------------------------------------------- */
+#section-details .countdown-wrapper {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.countdown-label-text {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--colour-text-light);
+  margin-bottom: var(--space-2);
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--colour-white);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  min-width: 70px;
+  box-shadow: var(--shadow-sm);
+}
+
+.countdown-number {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--colour-secondary);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-light);
+  margin-top: 4px;
+}
+
+.countdown-over {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--colour-primary);
+}
+
+/* --------------------------------------------------------------------------
+   8. WEDDING DETAILS
+   -------------------------------------------------------------------------- */
+.details-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.detail-card {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  background: var(--colour-white);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.detail-content h3 {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-primary);
+  margin-bottom: 4px;
+}
+
+.detail-content p {
+  font-size: 1rem;
+  color: var(--colour-text);
+  margin-bottom: 4px;
+}
+
+.detail-content .detail-note {
+  font-size: 0.85rem;
+  color: var(--colour-text-light);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   9. SCHEDULE
+   -------------------------------------------------------------------------- */
+#schedule-list {
+  position: relative;
+  padding-left: var(--space-2);
+}
+
+.schedule-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--colour-border);
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-time {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--colour-primary);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.schedule-divider {
+  flex: 1;
+  height: 1px;
+  background: var(--colour-border);
+  align-self: center;
+  opacity: 0.5;
+}
+
+.schedule-event {
+  font-size: 0.95rem;
+  color: var(--colour-text);
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   10. ADDITIONAL INFORMATION
+   -------------------------------------------------------------------------- */
+.info-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.info-card {
+  background: var(--colour-white);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.info-card h3 .info-icon {
+  font-size: 1.2rem;
+}
+
+.info-card p {
+  color: var(--colour-text);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-2);
+}
+
+/* FAQ Accordion */
+.faq-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--colour-secondary);
+  margin-bottom: var(--space-3);
+  text-align: center;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--colour-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.accordion-trigger:hover {
+  color: var(--colour-primary);
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+  color: var(--colour-primary);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.accordion-panel {
+  padding: 0 0 var(--space-2);
+}
+
+.accordion-panel p {
+  font-size: 0.95rem;
+  color: var(--colour-text-light);
+}
+
+/* --------------------------------------------------------------------------
+   11. RSVP FORM
+   -------------------------------------------------------------------------- */
+#section-rsvp {
+  background: var(--colour-secondary);
+}
+
+#section-rsvp .section-heading h2 {
+  color: var(--colour-white);
+}
+
+#section-rsvp .section-heading p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.rsvp-deadline-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: var(--space-4);
+}
+
+.rsvp-card {
+  background: var(--colour-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-md);
+}
+
+.form-group {
+  margin-bottom: var(--space-3);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-light);
+  margin-bottom: var(--space-1);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--colour-text);
+  background: var(--colour-bg);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.75em 1em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--colour-primary);
+  box-shadow: 0 0 0 3px rgba(176, 141, 106, 0.2);
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b08d6a' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  padding-right: 2.5em;
+}
+
+.form-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Radio button group (Attending Y/N) */
+.radio-group {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.radio-option {
+  flex: 1;
+}
+
+.radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  padding: 0.75em 1em;
+  border: 2px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--colour-text-light);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.radio-option input[type="radio"]:checked + .radio-label {
+  border-color: var(--colour-primary);
+  background: var(--colour-primary);
+  color: var(--colour-white);
+}
+
+.radio-option input[type="radio"]:focus-visible + .radio-label {
+  outline: 3px solid var(--colour-primary);
+  outline-offset: 2px;
+}
+
+.radio-label:hover {
+  border-color: var(--colour-primary);
+  color: var(--colour-primary);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label:hover {
+  color: var(--colour-white);
+}
+
+/* Form submit button */
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 1em;
+}
+
+/* Inline error */
+.form-error {
+  background: #fdf1ef;
+  border: 1px solid var(--colour-error);
+  border-radius: var(--radius-md);
+  color: var(--colour-error);
+  font-size: 0.9rem;
+  padding: 0.75em 1em;
+  margin-bottom: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   12. CONFIRMATION MESSAGE
+   -------------------------------------------------------------------------- */
+.confirmation-card {
+  text-align: center;
+  padding: var(--space-5) var(--space-3);
+}
+
+.confirmation-card h2 {
+  color: var(--colour-white);
+  font-size: 2rem;
+  margin-bottom: var(--space-2);
+}
+
+.confirmation-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  max-width: 460px;
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   13. SHARE SECTION
+   -------------------------------------------------------------------------- */
+.share-inner {
+  text-align: center;
+}
+
+.share-inner p {
+  color: var(--colour-text-light);
+  margin-bottom: var(--space-4);
+}
+
+.qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.qr-caption {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-light);
+  margin-top: var(--space-2);
+}
+
+#qr-code {
+  background: var(--colour-bg);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--colour-border);
+  display: inline-block;
+}
+
+#qr-code img {
+  display: block;
+}
+
+.share-link-row {
+  display: flex;
+  gap: var(--space-1);
+  max-width: 480px;
+  margin-inline: auto;
+  margin-bottom: var(--space-3);
+}
+
+.share-link-row .form-input {
+  flex: 1;
+  font-size: 0.875rem;
+}
+
+#share-btn {
+  display: none; /* shown by JS when Web Share API is available */
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   14. FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--colour-secondary);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: var(--space-4) var(--space-3);
+  font-size: 0.85rem;
+}
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   15. ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero > * {
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow    { animation-delay: 0.1s; }
+.hero-names      { animation-delay: 0.25s; }
+.hero-tagline    { animation-delay: 0.4s; }
+.hero .btn       { animation-delay: 0.55s; }
+
+/* Scroll-reveal — elements start invisible; JS adds .visible when in view */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   16. RESPONSIVE OVERRIDES
+   -------------------------------------------------------------------------- */
+
+/* Tablet and above (≥ 600px) */
+@media (min-width: 600px) {
+  .details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .schedule-event {
+    text-align: left;
+  }
+}
+
+/* Desktop (≥ 900px) */
+@media (min-width: 900px) {
+  :root {
+    --section-padding: var(--space-7) var(--space-3);
+  }
+
+  section {
+    padding: var(--space-7) 0;
+  }
+
+  .rsvp-card {
+    padding: var(--space-6);
+  }
+}

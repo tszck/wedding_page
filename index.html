@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    ============================================================
+    WEDDING PAGE — HTML
+    The page content (names, dates, text) is set in js/config.js.
+    You should NOT need to change this file for normal edits.
+    ============================================================
+  -->
+
+  <!-- Page title — also updated dynamically by config.js if desired -->
+  <title>Wedding Invitation</title>
+  <meta name="description" content="You're invited to our wedding! View details and RSVP online." />
+
+  <!-- Open Graph (social sharing preview) -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Wedding Invitation" />
+  <meta property="og:description" content="You're invited to celebrate our wedding. View details and RSVP online." />
+
+  <!-- Google Fonts: Cormorant Garamond (elegant serif) + Lato (clean sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       STICKY NAVIGATION
+       Links scroll smoothly to each section.
+       To hide a section, remove its <section> below and its <a> here.
+       ============================================================ -->
+  <nav class="site-nav" aria-label="Page sections">
+    <div class="container">
+      <a href="#section-details">Details</a>
+      <a href="#section-schedule">Schedule</a>
+      <a href="#section-info">Information</a>
+      <a href="#section-rsvp">RSVP</a>
+      <a href="#section-share">Share</a>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       Couple names, tagline, and CTA to scroll to RSVP.
+       Edit all text in js/config.js.
+       ============================================================ -->
+  <section class="hero" id="section-hero" aria-label="Hero">
+
+    <p class="hero-eyebrow">You are invited to celebrate the wedding of</p>
+
+    <!-- Couple names are injected by main.js from config.js -->
+    <h1 class="hero-names">
+      <span id="hero-partner1">Partner 1</span>
+      <span class="hero-ampersand">&amp;</span>
+      <span id="hero-partner2">Partner 2</span>
+    </h1>
+
+    <p class="hero-tagline" id="hero-tagline">
+      Together with their families, they joyfully invite you to celebrate their marriage.
+    </p>
+
+    <!-- CTA: scroll to RSVP section -->
+    <a href="#section-rsvp" class="btn btn--primary">
+      RSVP Now
+    </a>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2 — WEDDING DETAILS
+       Date, ceremony time, reception time, venue, dress code.
+       Edit all values in js/config.js.
+       ============================================================ -->
+  <section id="section-details" aria-label="Wedding Details">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>Wedding Details</h2>
+        <p>Everything you need to know for the big day</p>
+      </div>
+
+      <!-- Countdown timer (injected by main.js) -->
+      <div class="countdown-wrapper">
+        <p class="countdown-label-text">Counting down to the big day</p>
+        <div id="countdown" aria-live="polite" aria-label="Countdown to wedding"></div>
+      </div>
+
+      <!-- Detail cards -->
+      <div class="details-grid">
+
+        <!-- Date & Time -->
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">📅</div>
+          <div class="detail-content">
+            <h3>Date</h3>
+            <p id="detail-date">Date goes here</p>
+            <p class="detail-note">Ceremony: <span id="detail-ceremony-time"></span></p>
+            <p class="detail-note">Reception: <span id="detail-reception-time"></span></p>
+          </div>
+        </div>
+
+        <!-- Venue -->
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">📍</div>
+          <div class="detail-content">
+            <h3>Venue</h3>
+            <p id="detail-venue-name">Venue name</p>
+            <p class="detail-note" id="detail-venue-address">Address goes here</p>
+            <a id="detail-venue-map" href="#" target="_blank" rel="noopener noreferrer">
+              Open in Google Maps ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Dress Code -->
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">👗</div>
+          <div class="detail-content">
+            <h3>Dress Code</h3>
+            <p id="detail-dress-code">Dress code</p>
+            <p class="detail-note" id="detail-dress-code-note"></p>
+          </div>
+        </div>
+
+        <!-- RSVP reminder -->
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">✉️</div>
+          <div class="detail-content">
+            <h3>RSVP</h3>
+            <p>Kindly respond by <strong id="detail-rsvp-deadline"></strong></p>
+            <a href="#section-rsvp" class="btn btn--outline" style="margin-top:0.75rem;font-size:0.85rem;">
+              RSVP Here
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /.details-grid -->
+
+    </div><!-- /.container -->
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3 — EVENT SCHEDULE
+       Timeline of the day's events.
+       Edit the schedule array in js/config.js.
+       ============================================================ -->
+  <section id="section-schedule" aria-label="Event Schedule">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>Day Schedule</h2>
+        <p>A guide to the celebrations</p>
+      </div>
+
+      <!-- Schedule items are injected by main.js -->
+      <ul id="schedule-list" aria-label="Schedule of events">
+        <!-- Items rendered by JavaScript -->
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4 — ADDITIONAL INFORMATION
+       Accommodation, travel, and FAQ.
+       Edit content in js/config.js.
+       ============================================================ -->
+  <section id="section-info" aria-label="Additional Information">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>Good to Know</h2>
+        <p>Everything to help you prepare for the day</p>
+      </div>
+
+      <div class="info-grid">
+
+        <!-- Accommodation card -->
+        <div class="info-card">
+          <h3>
+            <span class="info-icon" aria-hidden="true">🏨</span>
+            <span id="accommodation-title">Accommodation</span>
+          </h3>
+          <p id="accommodation-text">Accommodation info goes here.</p>
+          <a id="accommodation-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:0.85rem;">
+            View accommodation
+          </a>
+        </div>
+
+        <!-- Travel card -->
+        <div class="info-card">
+          <h3>
+            <span class="info-icon" aria-hidden="true">🚗</span>
+            <span id="travel-title">Getting There</span>
+          </h3>
+          <p id="travel-text">Travel info goes here.</p>
+          <a id="travel-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline" style="font-size:0.85rem;">
+            Open in Google Maps
+          </a>
+        </div>
+
+      </div><!-- /.info-grid -->
+
+      <!-- FAQ Accordion -->
+      <h3 class="faq-title">Frequently Asked Questions</h3>
+      <div id="faq-list">
+        <!-- Accordion items are injected by main.js from config.js -->
+      </div>
+
+    </div><!-- /.container -->
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5 — RSVP
+       The RSVP form. On submit it shows the confirmation message.
+       No server is required — wire up to a form service in main.js.
+       ============================================================ -->
+  <section id="section-rsvp" aria-label="RSVP">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>RSVP</h2>
+        <p id="rsvp-deadline-label">Please respond by <span id="rsvp-deadline">the deadline</span></p>
+      </div>
+
+      <!-- ── RSVP FORM ─────────────────────────────────────────── -->
+      <form id="rsvp-form" class="rsvp-card" novalidate aria-label="RSVP form">
+
+        <!-- Full name -->
+        <div class="form-group">
+          <label class="form-label" for="rsvp-name">Your Name <span aria-hidden="true">*</span></label>
+          <input
+            class="form-input"
+            type="text"
+            id="rsvp-name"
+            name="name"
+            placeholder="e.g. Jane Smith"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <!-- Email (optional) -->
+        <div class="form-group">
+          <label class="form-label" for="rsvp-email">Email Address <span style="font-weight:400;font-style:italic;">(optional)</span></label>
+          <input
+            class="form-input"
+            type="email"
+            id="rsvp-email"
+            name="email"
+            placeholder="jane@example.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Attending? -->
+        <div class="form-group">
+          <p class="form-label" id="rsvp-attend-label">Will you be attending? <span aria-hidden="true">*</span></p>
+          <div class="radio-group" role="radiogroup" aria-labelledby="rsvp-attend-label">
+
+            <div class="radio-option">
+              <input
+                type="radio"
+                id="rsvp-attend-yes"
+                name="rsvp-attend"
+                value="yes"
+              />
+              <label class="radio-label" for="rsvp-attend-yes">
+                🎉 Joyfully Accepts
+              </label>
+            </div>
+
+            <div class="radio-option">
+              <input
+                type="radio"
+                id="rsvp-attend-no"
+                name="rsvp-attend"
+                value="no"
+              />
+              <label class="radio-label" for="rsvp-attend-no">
+                💌 Regretfully Declines
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Number of guests (only shown when attending = yes) -->
+        <div class="form-group" id="rsvp-guests-row" hidden>
+          <label class="form-label" for="rsvp-guests">Number of Guests (including yourself)</label>
+          <select class="form-select" id="rsvp-guests" name="guests">
+            <!-- Options populated by main.js using config.maxGuests -->
+          </select>
+        </div>
+
+        <!-- Dietary restrictions / notes -->
+        <div class="form-group">
+          <label class="form-label" for="rsvp-dietary">Dietary Requirements &amp; Allergies</label>
+          <input
+            class="form-input"
+            type="text"
+            id="rsvp-dietary"
+            name="dietary"
+            placeholder="e.g. Vegetarian, gluten-free, nut allergy…"
+          />
+        </div>
+
+        <!-- Additional message -->
+        <div class="form-group">
+          <label class="form-label" for="rsvp-message">Message for the Couple <span style="font-weight:400;font-style:italic;">(optional)</span></label>
+          <textarea
+            class="form-textarea"
+            id="rsvp-message"
+            name="message"
+            placeholder="Leave a warm message or any special requests…"
+          ></textarea>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn--primary form-submit">
+          Send RSVP ✓
+        </button>
+
+      </form><!-- /#rsvp-form -->
+
+
+      <!-- ── CONFIRMATION MESSAGE (hidden until form submitted) ── -->
+      <div id="rsvp-confirmation" class="confirmation-card" hidden aria-live="polite">
+        <h2 id="confirmation-title"></h2>
+        <p  id="confirmation-message"></p>
+      </div>
+
+    </div><!-- /.container -->
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6 — SHARE
+       QR code + copy-link button + native share.
+       The URL to share defaults to the current page URL unless
+       overridden in js/config.js (shareUrl).
+       ============================================================ -->
+  <section id="section-share" aria-label="Share the invitation">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2 id="share-title">Share the Invitation</h2>
+        <p id="share-text">Know someone who should be invited? Share this page with them!</p>
+      </div>
+
+      <div class="share-inner">
+
+        <!-- QR Code (generated by main.js via qrcode.js) -->
+        <div class="qr-wrapper">
+          <div id="qr-code" aria-label="QR code for this invitation page"></div>
+          <p class="qr-caption">Scan to open this page</p>
+        </div>
+
+        <!-- Copy-link row -->
+        <div class="share-link-row">
+          <input
+            type="text"
+            class="form-input"
+            id="share-link"
+            readonly
+            aria-label="Shareable invitation URL"
+          />
+          <button type="button" class="btn btn--primary" id="copy-link-btn">
+            Copy Link
+          </button>
+        </div>
+
+        <!-- Native share button (shown only when Web Share API is supported) -->
+        <button type="button" class="btn btn--outline" id="share-btn" hidden>
+          Share via…
+        </button>
+
+      </div><!-- /.share-inner -->
+
+    </div><!-- /.container -->
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <p id="footer-text">Made with ❤️ for your wedding</p>
+  </footer>
+
+
+  <!-- ============================================================
+       SCRIPTS
+       Load config first, then the QR code library, then main.js.
+       ============================================================ -->
+
+  <!-- 1. Configuration — ALL editable content lives here -->
+  <script src="js/config.js"></script>
+
+  <!--
+    2. QR Code library (lightweight, no build step required)
+       Source: https://github.com/davidshimjs/qrcodejs
+       Loaded from a CDN — no installation needed.
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+          integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSt9vmeYlyziDN7KNen9i9096m820dEOPMHJA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+  ></script>
+
+  <!-- 3. Main logic — do NOT edit unless changing behaviour -->
+  <script src="js/main.js"></script>
+
+  <!-- 4. Inline: populate the detail-rsvp-deadline from config -->
+  <script>
+    // Set the RSVP deadline in the details section as well
+    var dlEl = document.getElementById("detail-rsvp-deadline");
+    if (dlEl) dlEl.textContent = WEDDING_CONFIG.rsvpDeadline;
+  </script>
+
+</body>
+</html>
