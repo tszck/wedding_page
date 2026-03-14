@@ -53,9 +53,8 @@ const WEDDING_CONFIG = {
     { time: "2:45 PM",  event: "Guest Arrival" },
     { time: "3:00 PM",  event: "Ceremony" },
     { time: "3:30 PM",  event: "Mingle and Photos" },
-    { time: "4:00 PM",  event: "Proceed to Restaurant" },
-    { time: "4:30 PM",  event: "Cocktail and Snacks" },
-    { time: "5:30 PM",  event: "Dinner" },
+    { time: "4:00 PM",  event: "Proceed to Dinner Venue (TBC)" },
+    { time: "5:00 PM",  event: "Dinner" },
     { time: "8:00 PM",  event: "Carriages (End of Evening)" },
   ],
 
