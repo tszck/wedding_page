@@ -102,6 +102,8 @@ const WEDDING_CONFIG = {
   rsvpDeadline: "14 May 2025",
   // Maximum guests a single person can bring (including themselves)
   maxGuests: 4,
+  // Formspree form endpoint — replace with your own form ID from https://formspree.io
+  formspreeEndpoint: "https://formspree.io/f/mwvrqawk",
 
   // ----------------------------------------------------------
   // CONFIRMATION MESSAGE (shown after successful RSVP)
@@ -129,3 +131,8 @@ const WEDDING_CONFIG = {
   footerText: "Made with ❤️ for Sophia & James · 14 June 2025",
 
 };
+
+// Allow the config to be imported in Node.js / Jest tests
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = WEDDING_CONFIG;
+}

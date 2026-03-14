@@ -1,0 +1,28 @@
+{
+  "name": "wedding_page",
+  "version": "1.0.0",
+  "description": "A beautiful, mobile-first wedding invitation website that guests can visit to view wedding details and RSVP online.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tszck/wedding_page.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tszck/wedding_page/issues"
+  },
+  "homepage": "https://github.com/tszck/wedding_page#readme",
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0"
+  }
+}
