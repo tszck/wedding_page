@@ -29,7 +29,7 @@ const WEDDING_CONFIG = {
   weddingDateISO: "2026-05-09T15:00:00",
 
   ceremonyTime: "3:00 PM",
-  // receptionTime: "2:45 PM",
+  receptionTime: "2:45 PM",
 
   // ----------------------------------------------------------
   // VENUE
