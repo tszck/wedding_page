@@ -229,7 +229,7 @@ function initRsvpForm() {
     if (existingErr) existingErr.setAttribute("hidden", "");
 
     try {
-      const resp = await fetch("https://formspree.io/f/mwvrqawk", {
+      const resp = await fetch(WEDDING_CONFIG.formspreeEndpoint, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -282,6 +282,7 @@ function showFormError(msg) {
   errEl.removeAttribute("hidden");
   errEl.scrollIntoView({ behavior: "smooth", block: "center" });
 }
+} // end initRsvpForm
 
 /* ------------------------------------------------------------------ */
 /*  QR CODE GENERATION                                                 */
@@ -438,4 +439,9 @@ function initScrollReveal() {
   document.querySelectorAll(".reveal").forEach(function (el) {
     observer.observe(el);
   });
+}
+
+// Allow individual functions to be imported in Node.js / Jest tests
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { initRsvpForm };
 }
