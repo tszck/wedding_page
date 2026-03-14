@@ -12,67 +12,67 @@ const WEDDING_CONFIG = {
   // ----------------------------------------------------------
   // COUPLE DETAILS
   // ----------------------------------------------------------
-  partner1: "Sophia",
-  partner2: "James",
+  partner1: "Catherine Pang",
+  partner2: "Chris Kwok",
 
   // Short tagline shown in the hero section
-  heroTagline: "Together with their families, joyfully invite you to celebrate their marriage.",
+  heroTagline: "Together with their lovely cat Mårran, joyfully invite you to celebrate their marriage.",
 
   // ----------------------------------------------------------
   // WEDDING DATE & TIME
   // ----------------------------------------------------------
   // Use a format your guests will recognise, e.g. "Saturday, 14 June 2025"
-  weddingDateDisplay: "Saturday, 14 June 2025",
+  weddingDateDisplay: "Saturday, 9 May 2026",
 
   // Used by the countdown timer — must be a valid JavaScript Date string
   // Format: "YYYY-MM-DDTHH:MM:SS"  (24-hour clock, local time)
-  weddingDateISO: "2025-06-14T16:00:00",
+  weddingDateISO: "2026-05-09T15:00:00",
 
-  ceremonyTime: "4:00 PM",
-  receptionTime: "6:30 PM",
+  ceremonyTime: "3:00 PM",
+  // receptionTime: "2:45 PM",
 
   // ----------------------------------------------------------
   // VENUE
   // ----------------------------------------------------------
-  venueName: "The Grand Orchard Estate",
-  venueAddress: "123 Blossom Lane, Meadowshire, MH1 2WD",
+  venueName: "Stadshuset, Uppsala,
+  venueAddress: "Stadshuset, Stadshusgatan 2, Uppsala",
   // Google Maps link — replace with your own venue URL
-  venueMapUrl: "https://maps.google.com/?q=The+Grand+Orchard+Estate",
+  venueMapUrl: "https://maps.app.goo.gl/LGaQ7aBn4aeLNu9s7",
 
   // ----------------------------------------------------------
   // DRESS CODE
   // ----------------------------------------------------------
-  dressCode: "Formal / Black Tie Optional",
-  dressCodeNote: "Please avoid white and ivory to respect the bride.",
+  dressCode: "Smart Casual",
+  // dressCodeNote: "Please avoid white and ivory to respect the bride.",
 
   // ----------------------------------------------------------
   // EVENT SCHEDULE
   // ----------------------------------------------------------
   // Add, remove, or reorder items freely.
   schedule: [
-    { time: "3:30 PM",  event: "Guest Arrival & Welcome Drinks" },
-    { time: "4:00 PM",  event: "Ceremony" },
-    { time: "5:00 PM",  event: "Cocktail Hour & Garden Reception" },
-    { time: "6:30 PM",  event: "Dinner" },
-    { time: "8:00 PM",  event: "First Dance & Speeches" },
-    { time: "9:00 PM",  event: "Dancing & Celebrations" },
-    { time: "12:00 AM", event: "Carriages (End of Evening)" },
+    { time: "2:45 PM",  event: "Guest Arrival" },
+    { time: "3:00 PM",  event: "Ceremony" },
+    { time: "3:30 PM",  event: "Mingle and Photos" },
+    { time: "4:00 PM",  event: "Proceed to Restaurant" },
+    { time: "4:30 PM",  event: "Cocktail and Snacks" },
+    { time: "5:30 PM",  event: "Dinner" },
+    { time: "8:00 PM",  event: "Carriages (End of Evening)" },
   ],
 
   // ----------------------------------------------------------
   // ADDITIONAL INFORMATION
   // ----------------------------------------------------------
-  accommodation: {
-    title: "Accommodation",
-    text: "We have reserved a block of rooms at The Meadow Inn (5 minutes from the venue). Quote \u201cSophia & James Wedding\u201d when booking to receive a discounted rate.",
-    link: "https://example.com/meadow-inn",
-    linkText: "View The Meadow Inn",
-  },
+  // accommodation: {
+  //   title: "Accommodation",
+  //   text: "We have reserved a block of rooms at The Meadow Inn (5 minutes from the venue). Quote \u201cSophia & James Wedding\u201d when booking to receive a discounted rate.",
+  //   link: "https://example.com/meadow-inn",
+  //   linkText: "View The Meadow Inn",
+  // },
 
   travel: {
     title: "Getting There",
-    text: "The venue is easily accessible by road and rail. Free parking is available on-site. The nearest train station is Meadow Central (10-minute taxi ride).",
-    link: "https://maps.google.com/?q=The+Grand+Orchard+Estate",
+    text: "The venue is easily accessible by bus and rail.",
+    link: "https://maps.app.goo.gl/LGaQ7aBn4aeLNu9s7",
     linkText: "Open in Google Maps",
   },
 
@@ -84,7 +84,7 @@ const WEDDING_CONFIG = {
     },
     {
       question: "Can I take photos during the ceremony?",
-      answer: "We kindly ask for an unplugged ceremony — please keep phones and cameras away during the vows. Our photographer will capture every moment!",
+      answer: "Sure!",
     },
     {
       question: "What if I have dietary requirements?",
@@ -92,14 +92,14 @@ const WEDDING_CONFIG = {
     },
     {
       question: "When is the RSVP deadline?",
-      answer: "Please RSVP by 14 May 2025 so we can finalise catering numbers.",
+      answer: "Please RSVP by 26 April 2026 so we can finalise catering numbers.",
     },
   ],
 
   // ----------------------------------------------------------
   // RSVP SECTION
   // ----------------------------------------------------------
-  rsvpDeadline: "14 May 2025",
+  rsvpDeadline: "26 April 2026",
   // Maximum guests a single person can bring (including themselves)
   maxGuests: 4,
   // Formspree form endpoint — replace with your own form ID from https://formspree.io
@@ -128,7 +128,7 @@ const WEDDING_CONFIG = {
   // ----------------------------------------------------------
   // FOOTER
   // ----------------------------------------------------------
-  footerText: "Made with ❤️ for Sophia & James · 14 June 2025",
+  footerText: "Made with ❤️ for Catherine & Chris - with the help of Github Copilot!",
 
 };
 
