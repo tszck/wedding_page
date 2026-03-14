@@ -193,16 +193,16 @@ function initRsvpForm() {
   if (attendYes) attendYes.addEventListener("change", toggleGuestRow);
   if (attendNo)  attendNo.addEventListener("change", toggleGuestRow);
 
-  // Form submission
-  form.addEventListener("submit", function (e) {
+  // Form submission (Formspree)
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const name     = document.getElementById("rsvp-name").value.trim();
-    const email    = document.getElementById("rsvp-email").value.trim();
+    const name      = document.getElementById("rsvp-name").value.trim();
+    const email     = document.getElementById("rsvp-email").value.trim();
     const attending = document.querySelector('input[name="rsvp-attend"]:checked');
-    const guests   = document.getElementById("rsvp-guests").value;
-    const dietary  = document.getElementById("rsvp-dietary").value.trim();
-    const message  = document.getElementById("rsvp-message").value.trim();
+    const guests    = document.getElementById("rsvp-guests").value;
+    const dietary   = document.getElementById("rsvp-dietary").value.trim();
+    const message   = document.getElementById("rsvp-message").value.trim();
 
     // Basic validation
     if (!name) { showFormError("Please enter your name."); return; }
@@ -210,34 +210,63 @@ function initRsvpForm() {
 
     const isAttending = attending.value === "yes";
 
-    // Build the RSVP data object
     const rsvpData = {
       name,
       email,
-      attending: isAttending,
+      attending: isAttending ? "yes" : "no",
       guests: isAttending ? parseInt(guests, 10) : 0,
       dietary: dietary || "None",
       message,
       submittedAt: new Date().toISOString(),
     };
 
-    // In a real deployment, send rsvpData to a backend / form service here.
-    // For now we log it to the console and show a confirmation message.
-    console.log("RSVP Submitted:", rsvpData);
+    // Optional: disable submit button to prevent double submits
+    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
-    // Show confirmation
-    const config = isAttending
-      ? WEDDING_CONFIG.confirmationAccepted
-      : WEDDING_CONFIG.confirmationDeclined;
+    // Clear any previous error
+    const existingErr = document.getElementById("rsvp-error");
+    if (existingErr) existingErr.setAttribute("hidden", "");
 
-    confirmTitle.textContent = config.title;
-    confirmMsg.textContent   = config.message;
+    try {
+      const resp = await fetch("https://formspree.io/f/mwvrqawk", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rsvpData),
+      });
 
-    form.setAttribute("hidden", "");
-    confirmation.removeAttribute("hidden");
-    confirmation.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (!resp.ok) {
+        // Try to read Formspree's JSON error (if any)
+        let errMsg = "Something went wrong sending your RSVP. Please try again.";
+        try {
+          const data = await resp.json();
+          if (data && data.errors && data.errors.length) {
+            errMsg = data.errors.map(e => e.message).join(" ");
+          }
+        } catch (_) {}
+        throw new Error(errMsg);
+      }
+
+      // Show confirmation (same behavior you already had)
+      const config = isAttending
+        ? WEDDING_CONFIG.confirmationAccepted
+        : WEDDING_CONFIG.confirmationDeclined;
+
+      confirmTitle.textContent = config.title;
+      confirmMsg.textContent   = config.message;
+
+      form.setAttribute("hidden", "");
+      confirmation.removeAttribute("hidden");
+      confirmation.scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (err) {
+      showFormError(err.message || "Unable to submit RSVP. Please try again.");
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
-}
 
 /* Show an inline form error message */
 function showFormError(msg) {
