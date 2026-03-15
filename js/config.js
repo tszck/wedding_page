@@ -50,12 +50,10 @@ const WEDDING_CONFIG = {
   // ----------------------------------------------------------
   // Add, remove, or reorder items freely.
   schedule: [
-    { time: "2:45 PM",  event: "Guest Arrival" },
+    { time: "2:45 PM",  event: "Guests Arrive" },
     { time: "3:00 PM",  event: "Ceremony" },
     { time: "3:30 PM",  event: "Mingle and Photos" },
-    { time: "4:00 PM",  event: "Proceed to Dinner Venue (TBC)" },
-    { time: "5:00 PM",  event: "Dinner" },
-    { time: "8:00 PM",  event: "Carriages (End of Evening)" },
+    { time: "4:00 PM",  event: "Open Time / Social Activities" },
   ],
 
   // ----------------------------------------------------------
