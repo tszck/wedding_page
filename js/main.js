@@ -113,9 +113,14 @@ function populatePage() {
   // RSVP deadline and ceremony limit note
   setText("rsvp-deadline", c.rsvpDeadline);
   const limitNote = document.getElementById("rsvp-ceremony-limit-note");
-  if (limitNote && c.ceremonyLimit) {
-    limitNote.textContent =
-      "We would appreciate it if you could let us know whether you will be joining us, as space at the ceremony is limited to " + c.ceremonyLimit + " guests.";
+  if (limitNote) {
+    if (c.ceremonyLimit != null) {
+      limitNote.textContent = `We would appreciate it if you could let us know whether you will be joining us, as space at the ceremony is limited to ${c.ceremonyLimit} guests.`;
+      limitNote.removeAttribute("hidden");
+    } else {
+      limitNote.textContent = "";
+      limitNote.setAttribute("hidden", "");
+    }
   }
 
   // Dinner info (hidden until ready)
