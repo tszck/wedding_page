@@ -79,28 +79,34 @@ const WEDDING_CONFIG = {
   faq: [
     {
       question: "Are children welcome?",
-      answer: "We love your little ones! Children are welcome at the ceremony and reception.",
+      answer: "We love your little ones! Children are welcome at the ceremony.",
     },
     {
       question: "Can I take photos during the ceremony?",
       answer: "Sure!",
     },
     {
-      question: "What if I have dietary requirements?",
-      answer: "Please let us know in the RSVP form below. We can accommodate most dietary needs with advance notice.",
-    },
-    {
       question: "When is the RSVP deadline?",
-      answer: "Please RSVP by 26 April 2026 so we can finalise catering numbers.",
+      answer: "Please RSVP by 26 April 2026.",
     },
   ],
+
+  // ----------------------------------------------------------
+  // DINNER INFORMATION (hidden — details not yet finalised)
+  // ----------------------------------------------------------
+  // Set dinnerInfo.hidden = false when ready to show to guests.
+  dinnerInfo: {
+    hidden: true,
+    title: "Dinner",
+    text: "Details about the dinner to be announced. Please stay tuned!",
+  },
 
   // ----------------------------------------------------------
   // RSVP SECTION
   // ----------------------------------------------------------
   rsvpDeadline: "26 April 2026",
-  // Maximum guests a single person can bring (including themselves)
-  maxGuests: 4,
+  // Maximum number of guests for the ceremony
+  ceremonyLimit: 20,
   // Formspree form endpoint — replace with your own form ID from https://formspree.io
   formspreeEndpoint: "https://formspree.io/f/mwvrqawk",
 

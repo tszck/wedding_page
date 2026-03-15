@@ -14,15 +14,6 @@ const FORM_HTML = `
       <input type="radio" id="rsvp-attend-yes" name="rsvp-attend" value="yes" />
       <input type="radio" id="rsvp-attend-no"  name="rsvp-attend" value="no"  />
     </div>
-    <div id="rsvp-guests-row" hidden>
-      <select id="rsvp-guests" name="guests">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-    </div>
-    <textarea id="rsvp-dietary"  name="dietary"></textarea>
     <textarea id="rsvp-message"  name="message"></textarea>
     <button type="submit">Send RSVP</button>
   </form>
@@ -54,7 +45,7 @@ const { initRsvpForm } = require("../js/main.js");
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 /** Fill the form fields and fire a submit event. */
-async function submitForm({ name, email, attending, guests, dietary, message } = {}) {
+async function submitForm({ name, email, attending, message } = {}) {
   if (name      !== undefined) document.getElementById("rsvp-name").value    = name;
   if (email     !== undefined) document.getElementById("rsvp-email").value   = email;
   if (attending !== undefined) {
@@ -64,8 +55,6 @@ async function submitForm({ name, email, attending, guests, dietary, message } =
     radio.checked = true;
     radio.dispatchEvent(new Event("change", { bubbles: true }));
   }
-  if (guests    !== undefined) document.getElementById("rsvp-guests").value  = String(guests);
-  if (dietary   !== undefined) document.getElementById("rsvp-dietary").value = dietary;
   if (message   !== undefined) document.getElementById("rsvp-message").value = message;
 
   document
@@ -106,8 +95,6 @@ describe("RSVP form → Formspree submission", () => {
       name:      "Jane Smith",
       email:     "jane@example.com",
       attending: "yes",
-      guests:    2,
-      dietary:   "Vegetarian",
       message:   "Can't wait!",
     });
 
@@ -136,8 +123,6 @@ describe("RSVP form → Formspree submission", () => {
       name:      "Jane Smith",
       email:     "jane@example.com",
       attending: "yes",
-      guests:    2,
-      dietary:   "Nut allergy",
       message:   "Looking forward to it!",
     });
 
@@ -147,13 +132,11 @@ describe("RSVP form → Formspree submission", () => {
     expect(body.name).toBe("Jane Smith");
     expect(body.email).toBe("jane@example.com");
     expect(body.attending).toBe("yes");
-    expect(body.guests).toBe(2);
-    expect(body.dietary).toBe("Nut allergy");
     expect(body.message).toBe("Looking forward to it!");
     expect(body.submittedAt).toBeDefined();
   });
 
-  test("sends guests=0 and attending=no when guest is not attending", async () => {
+  test("sends attending=no when guest is not attending", async () => {
     global.fetch.mockResolvedValueOnce({ ok: true, json: () => Promise.resolve({}) });
 
     await submitForm({ name: "Bob Jones", attending: "no" });
@@ -162,7 +145,6 @@ describe("RSVP form → Formspree submission", () => {
     const body = JSON.parse(options.body);
 
     expect(body.attending).toBe("no");
-    expect(body.guests).toBe(0);
   });
 
   test("shows confirmation message and hides form after a successful submission", async () => {
