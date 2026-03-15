@@ -115,7 +115,7 @@ function populatePage() {
   const limitNote = document.getElementById("rsvp-ceremony-limit-note");
   if (limitNote && c.ceremonyLimit) {
     limitNote.textContent =
-      "Please note: The ceremony has a maximum of " + c.ceremonyLimit + " guests. Kindly let us know if you will be joining us.";
+      "We would appreciate it if you could let us know whether you will be joining us, as space at the ceremony is limited to " + c.ceremonyLimit + " guests.";
   }
 
   // Dinner info (hidden until ready)
