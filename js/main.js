@@ -110,18 +110,21 @@ function populatePage() {
     initAccordion();
   }
 
-  // RSVP deadline
+  // RSVP deadline and ceremony limit note
   setText("rsvp-deadline", c.rsvpDeadline);
+  const limitNote = document.getElementById("rsvp-ceremony-limit-note");
+  if (limitNote && c.ceremonyLimit) {
+    limitNote.textContent =
+      "Please note: The ceremony has a maximum of " + c.ceremonyLimit + " guests. Kindly let us know if you will be joining us.";
+  }
 
-  // Max guests option in select
-  const guestSelect = document.getElementById("rsvp-guests");
-  if (guestSelect) {
-    guestSelect.innerHTML = "";
-    for (let i = 1; i <= c.maxGuests; i++) {
-      const opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = i === 1 ? "1 (just me)" : i;
-      guestSelect.appendChild(opt);
+  // Dinner info (hidden until ready)
+  if (c.dinnerInfo) {
+    setText("dinner-info-title", c.dinnerInfo.title);
+    setText("dinner-info-text",  c.dinnerInfo.text);
+    const dinnerEl = document.getElementById("dinner-info");
+    if (dinnerEl && !c.dinnerInfo.hidden) {
+      dinnerEl.removeAttribute("hidden");
     }
   }
 
@@ -172,7 +175,6 @@ function startCountdown() {
 /* ------------------------------------------------------------------ */
 function initRsvpForm() {
   const form        = document.getElementById("rsvp-form");
-  const guestsRow   = document.getElementById("rsvp-guests-row");
   const attendYes   = document.getElementById("rsvp-attend-yes");
   const attendNo    = document.getElementById("rsvp-attend-no");
   const confirmation = document.getElementById("rsvp-confirmation");
@@ -181,18 +183,6 @@ function initRsvpForm() {
 
   if (!form) return;
 
-  // Show / hide guest count row based on attendance
-  function toggleGuestRow() {
-    if (attendYes && attendYes.checked) {
-      guestsRow.removeAttribute("hidden");
-    } else {
-      guestsRow.setAttribute("hidden", "");
-    }
-  }
-
-  if (attendYes) attendYes.addEventListener("change", toggleGuestRow);
-  if (attendNo)  attendNo.addEventListener("change", toggleGuestRow);
-
   // Form submission (Formspree)
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -200,13 +190,11 @@ function initRsvpForm() {
     const name      = document.getElementById("rsvp-name").value.trim();
     const email     = document.getElementById("rsvp-email").value.trim();
     const attending = document.querySelector('input[name="rsvp-attend"]:checked');
-    const guests    = document.getElementById("rsvp-guests").value;
-    const dietary   = document.getElementById("rsvp-dietary").value.trim();
     const message   = document.getElementById("rsvp-message").value.trim();
 
     // Basic validation
     if (!name) { showFormError("Please enter your name."); return; }
-    if (!attending) { showFormError("Please let us know if you'll be attending."); return; }
+    if (!attending) { showFormError("Please let us know if you'll be attending the ceremony."); return; }
 
     const isAttending = attending.value === "yes";
 
@@ -214,8 +202,6 @@ function initRsvpForm() {
       name,
       email,
       attending: isAttending ? "yes" : "no",
-      guests: isAttending ? parseInt(guests, 10) : 0,
-      dietary: dietary || "None",
       message,
       submittedAt: new Date().toISOString(),
     };

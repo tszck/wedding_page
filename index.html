@@ -190,6 +190,12 @@
       <!-- Accordion items are injected by main.js from config.js -->
       </div>
 
+      <!-- Dinner details — hidden until finalised -->
+      <div id="dinner-info" hidden>
+        <h3 id="dinner-info-title"></h3>
+        <p id="dinner-info-text"></p>
+      </div>
+
     </div><!-- /.container -->
   </section>
 
@@ -204,6 +210,7 @@
       <div class="section-heading">
         <h2>RSVP</h2>
         <p id="rsvp-deadline-label">Please respond by <span id="rsvp-deadline">the deadline</span></p>
+        <p id="rsvp-ceremony-limit-note" class="rsvp-ceremony-note"></p>
       </div>
 
       <!-- ── RSVP FORM ─────────────────────────────────────────── -->
@@ -236,9 +243,9 @@
           />
         </div>
 
-        <!-- Attending? -->
+        <!-- Attending the ceremony? -->
         <div class="form-group">
-          <p class="form-label" id="rsvp-attend-label">Will you be attending? <span aria-hidden="true">*</span></p>
+          <p class="form-label" id="rsvp-attend-label">Will you be attending the ceremony? <span aria-hidden="true">*</span></p>
           <div class="radio-group" role="radiogroup" aria-labelledby="rsvp-attend-label">
 
             <div class="radio-option">
@@ -266,26 +273,6 @@
             </div>
 
           </div>
-        </div>
-
-        <!-- Number of guests (only shown when attending = yes) -->
-        <div class="form-group" id="rsvp-guests-row" hidden>
-          <label class="form-label" for="rsvp-guests">Number of Guests (including yourself)</label>
-          <select class="form-select" id="rsvp-guests" name="guests">
-            <!-- Options populated by main.js using config.maxGuests -->
-          </select>
-        </div>
-
-        <!-- Dietary restrictions / notes -->
-        <div class="form-group">
-          <label class="form-label" for="rsvp-dietary">Dietary Requirements &amp; Allergies</label>
-          <input
-            class="form-input"
-            type="text"
-            id="rsvp-dietary"
-            name="dietary"
-            placeholder="e.g. Vegetarian, gluten-free, nut allergy…"
-          />
         </div>
 
         <!-- Additional message -->

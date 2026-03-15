@@ -593,6 +593,14 @@ section:nth-child(even) {
   margin-bottom: var(--space-4);
 }
 
+.rsvp-ceremony-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: var(--space-1);
+  font-style: italic;
+}
+
 .rsvp-card {
   background: var(--colour-white);
   border-radius: var(--radius-lg);
